@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# created by mzq
+
+if [ ! -d "$1" ] || [ ! -d "$1/.git" ]; then
+	echo "$1 is not a git repo"; exit 1
+fi
+
+files=( \
+.editorconfig \
+.gitignore \
+LICENSE \
+README.md \
+)
+
+cp -v "${files[@]}" "$1"; cd $_
+git add "${files[@]}"
+git commit -a -m 'update'
+git push -u origin master
